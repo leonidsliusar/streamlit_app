@@ -1,38 +1,36 @@
 import streamlit as st
 import base64
+from streamlit.components.v1 import html
 
-from js import js
-from styles import css
-
-
-def image_to_data_url(images):
-    if isinstance(images, list):
-        encoded_image_set = []
-        for image in images:
-            encoded_image = base64.b64encode(image).decode('utf-8')
-            data_url = f"data:image/jpeg;base64,{encoded_image}"
-            encoded_image_set.append(data_url)
-        output = encoded_image_set
-    else:
-        with open(images, 'rb') as image_file:
-            image_data = image_file.read()
-            encoded_image = base64.b64encode(image_data).decode('utf-8')
-            _, image_extension = images.split('.')
-            mime_type = f"image/{image_extension.lower()}"
-            output = f"data:{mime_type};base64,{encoded_image}"
-    return output
+from logo.tg import telegram_code
 
 
-upload_images = st.file_uploader('Перетащите фотографии сюда', accept_multiple_files=True)
+def create_contact_button(name, link, icon_dataurl):
+    return f'<a href="{link}" target="_blank"><img src="{icon_dataurl}" alt="{name}"></a>'
 
 
-if upload_images:
-    images = []
-    for image in upload_images:
-        image_bytes = image.read()
-        images.append(image_bytes)
-    data_urls = image_to_data_url(images)
-    thumbnail_html = ""
-    for index, data_url in enumerate(data_urls):
-        thumbnail_html += f'<img class="expandable-image" src="{data_url}" onclick="expandImage(this, {index})">'
-    st.markdown(f'{css}<div class="preview">{thumbnail_html}</div>{js}', unsafe_allow_html=True)
+# Контакты в WhatsApp и Telegram
+contacts = {
+    "WhatsApp": "https://wa.me/1234567890",
+    "Telegram": "https://t.me/sales_department",
+    "Phone Call": "tel:+1234567890",
+}
+
+# Создание словаря с соответствием между именем контакта и его значком (data URL)
+contact_icons = {}
+with open("logo/wsup.jpg", "rb") as image_file:
+    contact_icons["WhatsApp"] = base64.b64encode(image_file.read()).decode("utf-8")
+
+with open("logo/tg.png", "rb") as image_file:
+    contact_icons["Telegram"] = base64.b64encode(image_file.read()).decode("utf-8")
+
+with open("logo/phone.png", "rb") as image_file:
+    contact_icons["Phone Call"] = base64.b64encode(image_file.read()).decode("utf-8")
+
+# Создание кнопок для контактов с использованием соответствующих значков
+for name, link in contacts.items():
+    icon_dataurl = contact_icons[name]
+    st.markdown(create_contact_button(name, link, icon_dataurl), unsafe_allow_html=True)
+
+
+

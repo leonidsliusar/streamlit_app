@@ -1,23 +1,13 @@
-<style>
-  .preview-container {
-    display: flex;
-    flex-wrap: wrap;
-    max-width: 800px; /* Максимальная ширина превью контейнера */
-    margin: 0 auto; /* Центрирование контейнера на странице */
-  }
-
-  .preview-image {
-    max-width: 25%; /* Ограничение ширины каждой фотографии на 4 фотографии в строке */
-    box-sizing: border-box; /* Учитывать padding и border внутри max-width */
-    padding: 5px; /* Отступы между фотографиями */
-  }
-</style>
-
-<div class="preview-container">
-  {% for photo in photos %}
-    <div class="preview-image">
-      <img src="{{ photo.url }}" alt="{{ photo.alt }}">
-    </div>
-  {% endfor %}
-</div>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WebM Video Animation</title>
+</head>
+<body>
+    <video controls width="640" height="360">
+  <source src="Screencast from 07-24-2023 09_31_47 PM.mp4" type="video/mp4">
+  Ваш браузер не поддерживает видео.
+</video>
+</body>
+</html>
 

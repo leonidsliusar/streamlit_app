@@ -1,7 +1,10 @@
 import base64
 import io
 
+from streamlit.components.v1 import html
+
 from js import js
+from logo.tg import get_contact_buttons
 from styles import css
 
 
@@ -23,7 +26,7 @@ def image_to_data_url(images):
     return output
 
 
-def get_preview_html(title, address, data, data_urls, description, upload_map):
+def get_html(title, address, data, data_urls, description, map_url, tg_username):
     output = io.StringIO()
     output.write(f"<h1 style='font-family: Arial, sans-serif;'>{title}</h1>\n")
     output.write(f"<h2 style='font-family: Times New Roman, serif;'>{address}</h2>\n")
@@ -34,5 +37,13 @@ def get_preview_html(title, address, data, data_urls, description, upload_map):
     output.write(f"<h3 style='font-family: Times New Roman, serif;'>{description}</h3>\n")
     for i in data:
         output.write(f"<b>{i['Название поля']}</b>: {i['Данные поля']}\n<br>")
+    if map_url:
+        output.write(f"{map_url}")
+    tg_button = get_contact_buttons(tg_username)
+    output.write(tg_button)
     html_code = output.getvalue()
     return html_code
+
+
+def create_contact_button(name, phone_number):
+    return f'<a href="tel:{phone_number}"><button>{name}: {phone_number}</button></a>'

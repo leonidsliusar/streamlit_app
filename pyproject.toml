@@ -14,6 +14,7 @@ pdfkit = "^1.0.0"
 weasyprint = "^59.0"
 beautifulsoup4 = "^4.12.2"
 streamlit = "^1.0.0"
+ipywidgets = "^8.0.7"
 
 
 
