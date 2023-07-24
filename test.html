@@ -1,0 +1,23 @@
+<style>
+  .preview-container {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 800px; /* Максимальная ширина превью контейнера */
+    margin: 0 auto; /* Центрирование контейнера на странице */
+  }
+
+  .preview-image {
+    max-width: 25%; /* Ограничение ширины каждой фотографии на 4 фотографии в строке */
+    box-sizing: border-box; /* Учитывать padding и border внутри max-width */
+    padding: 5px; /* Отступы между фотографиями */
+  }
+</style>
+
+<div class="preview-container">
+  {% for photo in photos %}
+    <div class="preview-image">
+      <img src="{{ photo.url }}" alt="{{ photo.alt }}">
+    </div>
+  {% endfor %}
+</div>
+
