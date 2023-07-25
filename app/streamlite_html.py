@@ -83,8 +83,9 @@ def render():
         html_code = get_html(**payload_data)
         with open(f'{path_to_html}/{title}.html', 'w', encoding='utf-8') as file:
             file.write(html_code)
-        file_url = f'{path_to_html}/{title}.html'
-        st.markdown(f'<a href="{file_url}" target="_blank">Ваша ссылка</a>', unsafe_allow_html=True)
+
+
+st.button(label='Рендер', on_click=render)
 
 
 def get_html_link(title_filter):
