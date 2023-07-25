@@ -2,7 +2,7 @@ import os.path
 import threading
 import streamlit as st
 from streamlit.components.v1 import html
-from serv import run_fastapi
+from app.serv import run_fastapi
 from js import js
 from logo.tg import get_contact_buttons
 from styles import css
