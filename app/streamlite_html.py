@@ -9,6 +9,7 @@ from utils import image_to_data_url, get_html
 
 path = os.path.dirname(__file__)
 video_path = path+'/Screencast from 07-24-2023 09_31_47 PM.mp4'
+path_to_html = path+'/rendered'
 
 data_urls = None
 st.markdown('<link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0-beta3/css/all.css">',
@@ -79,9 +80,9 @@ def render():
             'phone': phone
         }
         html_code = get_html(**payload_data)
-        with open(f'rendered/{title}.html', 'w', encoding='utf-8') as file:
+        with open(f'{path_to_html}/{title}.html', 'w', encoding='utf-8') as file:
             file.write(html_code)
-        file_url = f'rendered/{title}.html'
+        file_url = f'{path_to_html}/{title}.html'
         st.markdown(f'<a href="{file_url}" target="_blank">Ваша ссылка</a>', unsafe_allow_html=True)
 
 
