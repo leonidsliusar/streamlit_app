@@ -1,7 +1,10 @@
+import io
 import os.path
 import threading
 import streamlit as st
 from streamlit.components.v1 import html
+
+from app.github_hook import push_to_gh, get_link
 from serv_fastapi import run_fastapi
 from js import js
 from logo.tg import get_contact_buttons
@@ -68,7 +71,7 @@ phone = phone if phone else '4917623158848'
 tg_username = tg_username if tg_username else '4917623158848'
 
 
-def render():
+def render() -> str:
     if title and data_urls:
         payload_data = {
             'title': title,
@@ -81,24 +84,11 @@ def render():
             'phone': phone
         }
         html_code = get_html(**payload_data)
-        with open(f'{path_to_html}/{title}.html', 'w', encoding='utf-8') as file:
-            file.write(html_code)
+        page_link = get_link(html_code)
+        return page_link
 
 
-st.button(label='Рендер', on_click=render)
-
-
-def get_html_link(title_filter):
-    return f'<a href="http://localhost:8000/{title_filter}" target="_blank">Ссылка на страницу</a>'
-
-
-title_filter = st.text_input("Введите название файла:")
-
-if title_filter:
-    link = get_html_link(title_filter)
+page = st.button(label='Рендер', on_click=render)
+if page:
+    link = f'<a href="{page}" target="_blank">Ссылка на страницу</a>'
     st.markdown(link, unsafe_allow_html=True)
-
-
-if __name__ == '__main__':
-    fastapi_thread = threading.Thread(target=run_fastapi)
-    fastapi_thread.start()

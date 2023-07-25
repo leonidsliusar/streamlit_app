@@ -1,8 +1,5 @@
 import base64
 import io
-
-from streamlit.components.v1 import html
-
 from js import js
 from logo.tg import get_contact_buttons
 from styles import css
