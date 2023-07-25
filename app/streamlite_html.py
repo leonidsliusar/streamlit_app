@@ -7,8 +7,8 @@ from logo.tg import get_contact_buttons
 from styles import css
 from utils import image_to_data_url, get_html
 
-current_directory = os.getcwd()
-video_path = os.path.join(current_directory, 'Screencast from 07-24-2023 09_31_47 PM.mp4')
+path = os.path.dirname(__file__)
+video_path = path+'/Screencast from 07-24-2023 09_31_47 PM.mp4'
 
 data_urls = None
 st.markdown('<link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0-beta3/css/all.css">',
@@ -41,7 +41,7 @@ for index in reversed(indices_to_remove):
 st.session_state["data"] = data
 map_url = st.text_input("Введите ссылку на карту Google Maps:")
 st.text('Как встроить карту Google Maps')
-# st.video(video_path)
+st.video(video_path)
 st.markdown("## Превью:")
 st.markdown(f"<h1 style='font-family: Arial, sans-serif;'>{title}</h1>", unsafe_allow_html=True)
 st.markdown(f"<h2 style='font-family: Times New Roman, serif;'>{address}</h2>", unsafe_allow_html=True)
