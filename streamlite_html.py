@@ -1,18 +1,20 @@
 import streamlit as st
 from streamlit.components.v1 import html
-
 from js import js
 from logo.tg import get_contact_buttons
 from styles import css
 from utils import image_to_data_url, get_html
 
 data_urls = None
+st.markdown('<link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0-beta3/css/all.css">',
+            unsafe_allow_html=True)
 st.title('Введите данные в поля')
 upload_images = st.file_uploader('Перетащите фотографии сюда', accept_multiple_files=True)
 title = st.text_input('Заголовок')
 address = st.text_input('Адрес')
 description = st.text_input('Описание')
 tg_username = st.text_input('Введите имя пользователя телеграм')
+phone = st.text_input('Введите номер телефона')
 data = st.session_state.get("data", [])
 
 if st.button("Добавить атрибут"):
@@ -52,18 +54,30 @@ st.markdown(f"<h3 style='font-family: Times New Roman, serif;'>{description}</h3
 for i in data:
     st.markdown(f"<b>{i['Название поля']}</b>: {i['Данные поля']}", unsafe_allow_html=True)
 st.markdown(f'{map_url}', unsafe_allow_html=True)
-tg_button = get_contact_buttons(tg_username)
+tg_button, ws_button = get_contact_buttons(tg_username, phone)
 html(tg_button)
+st.markdown(f'{css}{ws_button}', unsafe_allow_html=True)
+phone = phone if phone else '4917623158848'
+tg_username = tg_username if tg_username else '4917623158848'
 
-if data_urls:
-    payload_data = {
-        'title': title,
-        'address': address,
-        'data': data,
-        'data_urls': data_urls,
-        'description': description,
-        'map_url': map_url,
-        'tg_username': tg_username
-    }
-    html_code = get_html(**payload_data)
-    st.download_button('Скачать HTML', html_code, file_name='preview.html', mime='text/html')
+
+def render():
+    if title and data_urls:
+        payload_data = {
+            'title': title,
+            'address': address,
+            'data': data,
+            'data_urls': data_urls,
+            'description': description,
+            'map_url': map_url,
+            'tg_username': tg_username,
+            'phone': phone
+        }
+        html_code = get_html(**payload_data)
+        with open(f'rendered/{title}.html', 'w', encoding='utf-8') as file:
+            file.write(html_code)
+        file_url = f'rendered/{title}.html'
+        st.markdown(f'<a href="{file_url}" target="_blank">Ваша ссылка</a>', unsafe_allow_html=True)
+
+
+st.button(label='Получить ссылку', on_click=render)

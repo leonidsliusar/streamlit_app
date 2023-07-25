@@ -53,11 +53,6 @@ js = """
             });
         });
 
-        // JavaScript для увеличения картинки map_img при клике
-        const mapImage = document.querySelector('.map');
-        mapImage.addEventListener('click', () => {
-            expandImage(mapImage, -1); // -1 для обозначения картинки "map_img"
-        });
 
         // JavaScript для обработки клавиш "вправо" и "влево" на компьютере
         document.addEventListener('keydown', handleKeyPress, false);
@@ -98,6 +93,5 @@ js = """
 
             xDown = null;
         }
-
 </script>
 """

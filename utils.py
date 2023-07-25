@@ -26,21 +26,27 @@ def image_to_data_url(images):
     return output
 
 
-def get_html(title, address, data, data_urls, description, map_url, tg_username):
+def get_html(title: str, address: str, data: str, data_urls: str, description: str, map_url: str,
+             tg_username: str, phone: str):
     output = io.StringIO()
+    output.write('<meta charset="UTF-8">')
+    output.write('<link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0-beta3/css/all.css">')
+    output.write(css)
+    output.write(js)
     output.write(f"<h1 style='font-family: Arial, sans-serif;'>{title}</h1>\n")
     output.write(f"<h2 style='font-family: Times New Roman, serif;'>{address}</h2>\n")
     thumbnail_html = ""
     for index, data_url in enumerate(data_urls):
         thumbnail_html += f'<img class="expandable-image" src="{data_url}" onclick="expandImage(this, {index})">'
-    output.write(f'{css}<div class="preview">{thumbnail_html}</div>{js}\n')
+    output.write(f'<div class="preview">{thumbnail_html}</div>')
     output.write(f"<h3 style='font-family: Times New Roman, serif;'>{description}</h3>\n")
     for i in data:
         output.write(f"<b>{i['Название поля']}</b>: {i['Данные поля']}\n<br>")
     if map_url:
         output.write(f"{map_url}")
-    tg_button = get_contact_buttons(tg_username)
+    tg_button, ws_button = get_contact_buttons(tg_username, phone)
     output.write(tg_button)
+    output.write(ws_button)
     html_code = output.getvalue()
     return html_code
 

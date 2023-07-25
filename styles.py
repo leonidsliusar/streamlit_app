@@ -52,5 +52,61 @@ css = """
                                             background-color: #888; /* Цвет полосы прокрутки */
                                             border-radius: 5px; /* Закругление углов полосы прокрутки */
         }
+        .whatsapp-button {
+    position: fixed;
+    right: 13px;
+    bottom: 90px;
+    transform: translate(-50%, -50%);
+    background: #25D366; /*цвет кнопки*/
+    border-radius: 50%;
+    width: 55px; /*ширина кнопки*/
+    height: 55px; /*высота кнопки*/
+    color: #fff;
+    text-align: center;
+    line-height: 53px; /*центровка иконки в кнопке*/
+    font-size: 50px; /*размер иконки*/
+    z-index: 9999;
+}
+.whatsapp-button a {
+    color: #fff;
+}
+.whatsapp-button:before,
+.whatsapp-button:after {
+    content: " ";
+    display: block;
+    position: absolute;
+    border: 50%;
+    border: 1px solid #25D366; /*цвет анимированных волн от кнопки*/
+    left: -20px;
+    right: -20px;
+    top: -20px;
+    bottom: -20px;
+    border-radius: 50%;
+    animation: animate 1.5s linear infinite;
+    opacity: 0;
+    backface-visibility: hidden;
+}
+
+.whatsapp-button:after{
+    animation-delay: .5s;
+}
+
+@keyframes animate
+{
+    0%
+    {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    50%
+    {
+        opacity: 1;
+    }
+    100%
+    {
+        transform: scale(1.2);
+        opacity: 0;
+    }
+}
     </style>
 """
