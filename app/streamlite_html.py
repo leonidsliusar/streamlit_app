@@ -7,8 +7,8 @@ from logo.tg import get_contact_buttons
 from styles import css
 from utils import image_to_data_url, get_html
 
-file_name = "Screencast from 07-24-2023 09_31_47 PM.mp4"
-video_path = './Screencast from 07-24-2023 09_31_47 PM.mp4'
+current_directory = os.getcwd()
+video_path = os.path.join(current_directory, 'Screencast from 07-24-2023 09_31_47 PM.mp4')
 
 data_urls = None
 st.markdown('<link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0-beta3/css/all.css">',
