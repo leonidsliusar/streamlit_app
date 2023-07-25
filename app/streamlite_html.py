@@ -41,7 +41,7 @@ for index in reversed(indices_to_remove):
 st.session_state["data"] = data
 map_url = st.text_input("Введите ссылку на карту Google Maps:")
 st.text('Как встроить карту Google Maps')
-st.video(video_path)
+# st.video(video_path)
 st.markdown("## Превью:")
 st.markdown(f"<h1 style='font-family: Arial, sans-serif;'>{title}</h1>", unsafe_allow_html=True)
 st.markdown(f"<h2 style='font-family: Times New Roman, serif;'>{address}</h2>", unsafe_allow_html=True)
