@@ -1,9 +1,14 @@
+import os.path
+
 import streamlit as st
 from streamlit.components.v1 import html
 from js import js
 from logo.tg import get_contact_buttons
 from styles import css
 from utils import image_to_data_url, get_html
+
+file_name = "Screencast from 07-24-2023 09_31_47 PM.mp4"
+video_path = os.path.abspath(file_name)
 
 data_urls = None
 st.markdown('<link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0-beta3/css/all.css">',
@@ -36,7 +41,7 @@ for index in reversed(indices_to_remove):
 st.session_state["data"] = data
 map_url = st.text_input("Введите ссылку на карту Google Maps:")
 st.text('Как встроить карту Google Maps')
-st.video('https://github.com/leonidsliusar/streamlit_app/Screencast%20from%2007-24-2023%2009_31_47%20PM.mp4')
+st.video(video_path)
 st.markdown("## Превью:")
 st.markdown(f"<h1 style='font-family: Arial, sans-serif;'>{title}</h1>", unsafe_allow_html=True)
 st.markdown(f"<h2 style='font-family: Times New Roman, serif;'>{address}</h2>", unsafe_allow_html=True)
@@ -74,9 +79,9 @@ def render():
             'phone': phone
         }
         html_code = get_html(**payload_data)
-        with open(f'./rendered/{title}.html', 'w', encoding='utf-8') as file:
+        with open(f'rendered/{title}.html', 'w', encoding='utf-8') as file:
             file.write(html_code)
-        file_url = f'./rendered/{title}.html'
+        file_url = f'rendered/{title}.html'
         st.markdown(f'<a href="{file_url}" target="_blank">Ваша ссылка</a>', unsafe_allow_html=True)
 
 
