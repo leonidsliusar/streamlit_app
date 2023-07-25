@@ -1,15 +1,16 @@
 import os.path
-
+import threading
 import streamlit as st
 from streamlit.components.v1 import html
+from serv import run_fastapi
 from js import js
 from logo.tg import get_contact_buttons
 from styles import css
 from utils import image_to_data_url, get_html
 
 path = os.path.dirname(__file__)
-video_path = path+'/Screencast from 07-24-2023 09_31_47 PM.mp4'
-path_to_html = path+'/rendered'
+video_path = path + '/Screencast from 07-24-2023 09_31_47 PM.mp4'
+path_to_html = path + '/rendered'
 
 data_urls = None
 st.markdown('<link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0-beta3/css/all.css">',
@@ -86,4 +87,17 @@ def render():
         st.markdown(f'<a href="{file_url}" target="_blank">Ваша ссылка</a>', unsafe_allow_html=True)
 
 
-st.button(label='Получить ссылку', on_click=render)
+def get_html_link(title_filter):
+    return f'<a href="http://localhost:8000/{title_filter}" target="_blank">Ссылка на страницу</a>'
+
+
+title_filter = st.text_input("Введите название файла:")
+
+if title_filter:
+    link = get_html_link(title_filter)
+    st.markdown(link, unsafe_allow_html=True)
+
+
+if __name__ == '__main__':
+    fastapi_thread = threading.Thread(target=run_fastapi)
+    fastapi_thread.start()
