@@ -1,5 +1,6 @@
 import socket
-import subprocess
+
+import uvicorn
 from fastapi import FastAPI
 from starlette.responses import FileResponse
 
@@ -19,5 +20,4 @@ def is_port_in_use(port):
 
 def run_fastapi():
     if not is_port_in_use(8000):
-        fastapi_cmd = ["uvicorn", "serv:app", "--host", "0.0.0.0", "--port", "8000"]
-        subprocess.run(fastapi_cmd)
+        uvicorn.run(app)
