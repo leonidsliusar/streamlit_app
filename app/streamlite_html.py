@@ -74,7 +74,7 @@ def render():
             'phone': phone
         }
         html_code = get_html(**payload_data)
-        with open(f'rendered/{title}.html', 'w', encoding='utf-8') as file:
+        with open(f'https://github.com/leonidsliusar/streamlit_app/raw/main/path/to/rendered/{title}.html', 'w', encoding='utf-8') as file:
             file.write(html_code)
         file_url = f'https://github.com/leonidsliusar/streamlit_app/raw/main/path/to/rendered/{title}.html'
         st.markdown(f'<a href="{file_url}" target="_blank">Ваша ссылка</a>', unsafe_allow_html=True)
