@@ -20,4 +20,4 @@ def is_port_in_use(port):
 
 def run_fastapi():
     if not is_port_in_use(8000):
-        uvicorn.run(app)
+        uvicorn.run(app, host='0.0.0.0', port=8000)
