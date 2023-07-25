@@ -36,7 +36,7 @@ for index in reversed(indices_to_remove):
 st.session_state["data"] = data
 map_url = st.text_input("Введите ссылку на карту Google Maps:")
 st.text('Как встроить карту Google Maps')
-st.video('https://github.com/your_username/your_repository/raw/main/path/to/Screencast%20from%2007-24-2023%2009_31_47%20PM.mp4')
+st.video('https://github.com/leonidsliusar/streamlit_app/raw/main/path/to/Screencast%20from%2007-24-2023%2009_31_47%20PM.mp4')
 st.markdown("## Превью:")
 st.markdown(f"<h1 style='font-family: Arial, sans-serif;'>{title}</h1>", unsafe_allow_html=True)
 st.markdown(f"<h2 style='font-family: Times New Roman, serif;'>{address}</h2>", unsafe_allow_html=True)
@@ -76,7 +76,7 @@ def render():
         html_code = get_html(**payload_data)
         with open(f'rendered/{title}.html', 'w', encoding='utf-8') as file:
             file.write(html_code)
-        file_url = f'rendered/{title}.html'
+        file_url = f'https://github.com/leonidsliusar/streamlit_app/raw/main/path/to/rendered/{title}.html'
         st.markdown(f'<a href="{file_url}" target="_blank">Ваша ссылка</a>', unsafe_allow_html=True)
 
 
