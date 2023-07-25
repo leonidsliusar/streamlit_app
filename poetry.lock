@@ -1141,18 +1141,6 @@ qa = ["flake8 (==3.8.3)", "mypy (==0.782)"]
 testing = ["docopt", "pytest (<6.0.0)"]
 
 [[package]]
-name = "pdfkit"
-version = "1.0.0"
-description = "Wkhtmltopdf python wrapper to convert html to pdf using the webkit rendering engine and qt"
-optional = false
-python-versions = "*"
-files = [
-    {file = "pdfkit-1.0.0-py2-none-any.whl", hash = "sha256:cc122e5aed594198ff7aaa566f2950d2163763576ab891c161bb1f6c630f5a8e"},
-    {file = "pdfkit-1.0.0-py3-none-any.whl", hash = "sha256:a7a4ca0d978e44fa8310c4909f087052430a6e8e0b1dd7ceef657f139789f96f"},
-    {file = "pdfkit-1.0.0.tar.gz", hash = "sha256:992f821e1e18fc8a0e701ecae24b51a2d598296a180caee0a24c0af181da02a9"},
-]
-
-[[package]]
 name = "pexpect"
 version = "4.8.0"
 description = "Pexpect allows easy control of interactive console applications."
@@ -1645,25 +1633,6 @@ files = [
 [package.dependencies]
 attrs = ">=22.2.0"
 rpds-py = ">=0.7.0"
-
-[[package]]
-name = "reportlab"
-version = "4.0.4"
-description = "The Reportlab Toolkit"
-optional = false
-python-versions = ">=3.7,<4"
-files = [
-    {file = "reportlab-4.0.4-py3-none-any.whl", hash = "sha256:3dcda79ce04baf70721e2ec54854722644262cac2feec3d5c4c5e77015504cb0"},
-    {file = "reportlab-4.0.4.tar.gz", hash = "sha256:7f70b3b56aff5f11cb4136c51a0f5a56fe6e4c8fbbac7b903076db99a8ef31c1"},
-]
-
-[package.dependencies]
-pillow = ">=9.0.0"
-
-[package.extras]
-accel = ["rl-accel (>=0.9.0,<1.1)"]
-pycairo = ["freetype-py (>=2.3.0,<2.4)", "rlPyCairo (>=0.2.0,<1)"]
-renderpm = ["rl-renderPM (>=4.0.3,<4.1)"]
 
 [[package]]
 name = "requests"
@@ -2253,4 +2222,4 @@ test = ["pytest"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "eebcd738105e9c67839a022c14022df6f23e8ed5412fc30bc34929a6cd256052"
+content-hash = "9f4b2dcfc1a16c7daf63c49929c898aca035bc934c8a9478d37fe5dce11a581a"
