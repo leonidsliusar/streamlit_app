@@ -13,7 +13,7 @@ reportlab = "^4.0.4"
 pdfkit = "^1.0.0"
 weasyprint = "^59.0"
 beautifulsoup4 = "^4.12.2"
-streamlit = "^1.0.0"
+streamlit = "1.25.0"
 ipywidgets = "^8.0.7"
 
 
