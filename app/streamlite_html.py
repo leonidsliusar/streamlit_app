@@ -1,11 +1,7 @@
-import io
 import os.path
-import threading
 import streamlit as st
 from streamlit.components.v1 import html
-
-from app.github_hook import push_to_gh, get_link
-from serv_fastapi import run_fastapi
+from app.github_hook import GitHubManager
 from js import js
 from logo.tg import get_contact_buttons
 from styles import css
@@ -84,11 +80,12 @@ def render() -> str:
             'phone': phone
         }
         html_code = get_html(**payload_data)
-        page_link = get_link(html_code)
+        manager = GitHubManager(html_code)
+        page_link = manager.get_link
         return page_link
 
 
-page = st.button(label='Рендер', on_click=render)
-if page:
-    link = f'<a href="{page}" target="_blank">Ссылка на страницу</a>'
+page_link = st.button(label='Получить ссылку', on_click=render)
+if page_link:
+    link = f'<a href="{page_link}" target="_blank">Ссылка на страницу</a>'
     st.markdown(link, unsafe_allow_html=True)

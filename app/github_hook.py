@@ -49,9 +49,3 @@ class GitHubManager:
         page_link = response.json()
         page_link = page_link.get('html_url')
         return page_link
-
-
-manager = GitHubManager(
-    '<!DOCTYPE html><html><head><title>Hello, World! I am HEEERREE!!!</title></head><body><h1>Hello, World!</h1></body></html>')
-
-print(manager.get_link)
