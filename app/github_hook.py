@@ -5,11 +5,13 @@ import requests
 from github import Github, Auth
 from github.Repository import Repository
 from dotenv import load_dotenv
+import streamlit as st
 
 load_dotenv()
 gh_org = os.getenv("GH_ORG")
 gh_token = os.getenv("GH_TOKEN")
-
+st.write("GH_ORG:", st.secrets["gh_org"])
+st.write("GH_TOKEN", st.secrets["gh_token"])
 
 class GitHubManager:
     _commit_message: str = "add page.txt"
