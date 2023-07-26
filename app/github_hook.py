@@ -7,12 +7,12 @@ from github.Repository import Repository
 from dotenv import load_dotenv
 import streamlit as st
 
-load_dotenv()
-gh_org = os.getenv("GH_ORG")
-gh_token = os.getenv("GH_TOKEN")
-if not gh_org or not gh_token:
-    gh_org = st.secrets["gh_org"]
-    gh_token = st.secrets["gh_token"]
+# load_dotenv()
+# gh_org = os.getenv("GH_ORG")
+# gh_token = os.getenv("GH_TOKEN")
+# if not gh_org or not gh_token:
+gh_org = st.secrets["gh_org"]
+gh_token = st.secrets["gh_token"]
 
 
 class GitHubManager:
