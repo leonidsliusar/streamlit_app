@@ -1,14 +1,15 @@
+import json
 import os.path
 import streamlit as st
 from streamlit.components.v1 import html
-from app.github_hook import GitHubManager
+from github_hook import GitHubManager
 from js import js
 from logo.tg import get_contact_buttons
 from styles import css
-from utils import image_to_data_url, get_html
+from utils import image_to_data_url, get_html, write_in_json
 
 path = os.path.dirname(__file__)
-video_path = path + '/Screencast from 07-24-2023 09_31_47 PM.mp4'
+video_path = path + '/hint.mp4'
 path_to_html = path + '/rendered'
 
 data_urls = None
@@ -18,7 +19,28 @@ st.title('Введите данные в поля')
 upload_images = st.file_uploader('Перетащите фотографии сюда', accept_multiple_files=True)
 title = st.text_input('Заголовок')
 address = st.text_input('Адрес')
-description = st.text_input('Описание')
+description = st.text_area('Описание', height=300, max_chars=None)
+hint_desc = '''
+Основные теги HTML разетки для форматирование текста
+Подробнее: https://html5book.ru/html-html5/
+
+<br>Текст: Перенос строки - создает перенос строки (без абзацев) ЗАКРЫВАЮЩИЙСЯ ТЕГ НЕ ТРЕБУЕТСЯ.\n\n
+<p>Текст</p>: Параграф - создает абзац текста.\n
+<strong>Текст</strong>: Жирный шрифт - используется для выделения текста жирным.\n
+<em>Текст</em>: Курсив - используется для выделения текста курсивом.\n
+<u>Текст</u>: Подчеркивание - применяет подчеркивание к тексту.\n
+<ul>Текст</ul>: Маркированный список - создает маркированный список (с точками, кружками и т.д.).\n\n
+<ol>Текст</ol>: Нумерованный список - создает нумерованный список (с цифрами).\n\n
+<li>Текст</li>: Элемент списка - используется внутри <ul> или <ol> для создания элементов списка.\n\n
+<a>Ссылка</a>: Гиперссылка - создает ссылку на другую страницу или ресурс.\n
+'''
+with st.sidebar.expander('Подсказка для поля "описание":\n\nтеги для форматирования текста'):
+    st.markdown(hint_desc)
+with open('map.json', 'r') as file:
+    link_mapping_data = json.load(file)
+with st.sidebar.expander('Соответствие существующих заголовков и ссылок'):
+    for key in link_mapping_data:
+        st.markdown(f'{key}: {link_mapping_data[key]}')
 tg_username = st.text_input('Введите имя пользователя телеграм')
 phone = st.text_input('Введите номер телефона')
 data = st.session_state.get("data", [])
@@ -85,7 +107,9 @@ def render() -> str:
         return page_link
 
 
-page_link = st.button(label='Получить ссылку', on_click=render)
-if page_link:
-    link = f'<a href="{page_link}" target="_blank">Ссылка на страницу</a>'
-    st.markdown(link, unsafe_allow_html=True)
+if st.button(label='Получить ссылку', on_click=render):
+    page_link = render()
+    link = f'<a href="{page_link}" target="_blank">Подождите пока страница развернется на сервере (до 10 мин) ' \
+           f'{page_link}</a>'
+    st.write(link, unsafe_allow_html=True)
+    write_in_json(title, page_link)

@@ -1,5 +1,7 @@
 import base64
 import io
+import json
+
 from js import js
 from logo.tg import get_contact_buttons
 from styles import css
@@ -50,3 +52,14 @@ def get_html(title: str, address: str, data: str, data_urls: str, description: s
 
 def create_contact_button(name, phone_number):
     return f'<a href="tel:{phone_number}"><button>{name}: {phone_number}</button></a>'
+
+
+def write_in_json(title: str, link: str) -> None:
+    with open('map.json', 'r') as file:
+        link_mapping_data = json.load(file)
+    if 'None' in link_mapping_data:
+        link_mapping_data = {title: link}
+    else:
+        link_mapping_data.update({title: link})
+    with open('map.json', 'w') as file:
+        json.dump(link_mapping_data, file)
