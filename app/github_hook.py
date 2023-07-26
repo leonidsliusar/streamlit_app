@@ -10,8 +10,10 @@ import streamlit as st
 load_dotenv()
 gh_org = os.getenv("GH_ORG")
 gh_token = os.getenv("GH_TOKEN")
-st.write("GH_ORG:", st.secrets["gh_org"])
-st.write("GH_TOKEN", st.secrets["gh_token"])
+if not gh_org or not gh_token:
+    gh_org = st.secrets["gh_org"]
+    gh_token = st.secrets["gh_token"]
+
 
 class GitHubManager:
     _commit_message: str = "add page.txt"
