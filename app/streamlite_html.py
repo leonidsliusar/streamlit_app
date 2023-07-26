@@ -11,6 +11,7 @@ from utils import image_to_data_url, get_html, write_in_json
 path = os.path.dirname(__file__)
 video_path = path + '/hint.mp4'
 path_to_html = path + '/rendered'
+path_to_json = path + '/map.json'
 
 data_urls = None
 st.markdown('<link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0-beta3/css/all.css">',
@@ -36,7 +37,7 @@ hint_desc = '''
 '''
 with st.sidebar.expander('Подсказка для поля "описание":\n\nтеги для форматирования текста'):
     st.markdown(hint_desc)
-with open('map.json', 'r') as file:
+with open(path_to_json, 'r') as file:
     link_mapping_data = json.load(file)
 with st.sidebar.expander('Соответствие существующих заголовков и ссылок'):
     for key in link_mapping_data:
@@ -112,4 +113,4 @@ if st.button(label='Получить ссылку', on_click=render):
     link = f'<a href="{page_link}" target="_blank">Подождите пока страница развернется на сервере (до 10 мин) ' \
            f'{page_link}</a>'
     st.write(link, unsafe_allow_html=True)
-    write_in_json(title, page_link)
+    write_in_json(title, page_link, path_to_json)

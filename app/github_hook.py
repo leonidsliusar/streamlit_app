@@ -1,12 +1,14 @@
+import os
 import uuid
 from typing import Optional
-
 import requests
 from github import Github, Auth
 from github.Repository import Repository
+from dotenv import load_dotenv
 
-gh_org = 'elenabiterman'
-gh_token = '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'
+load_dotenv()
+gh_org = os.getenv("GH_ORG")
+gh_token = os.getenv("GH_TOKEN")
 
 
 class GitHubManager:

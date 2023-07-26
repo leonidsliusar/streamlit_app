@@ -54,12 +54,12 @@ def create_contact_button(name, phone_number):
     return f'<a href="tel:{phone_number}"><button>{name}: {phone_number}</button></a>'
 
 
-def write_in_json(title: str, link: str) -> None:
-    with open('map.json', 'r') as file:
+def write_in_json(title: str, link: str, json_path: str) -> None:
+    with open(json_path, 'r') as file:
         link_mapping_data = json.load(file)
     if 'None' in link_mapping_data:
         link_mapping_data = {title: link}
     else:
         link_mapping_data.update({title: link})
-    with open('map.json', 'w') as file:
+    with open(json_path, 'w') as file:
         json.dump(link_mapping_data, file)
