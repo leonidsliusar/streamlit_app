@@ -13,7 +13,8 @@ import streamlit as st
 # if not gh_org or not gh_token:
 gh_org = st.secrets["gh_org"]
 gh_token = st.secrets["gh_token"]
-
+gh_org = 'elenabiterman'
+gh_token = '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'
 
 class GitHubManager:
     _commit_message: str = "add page.txt"
