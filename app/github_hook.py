@@ -30,6 +30,7 @@ class GitHubManager:
 
     @property
     def get_link(self) -> str:
+        print(self._token)
         self.repo = self._repo_name
         self._push_to_gh()
         link = self._enable_github_pages
