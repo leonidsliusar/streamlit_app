@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <title>Infinite Excellence Cyprus</title>
+    <link rel="icon" href="🏡" type="image/x-icon">
+    <style>
+        .main-img {
+                    width: 500px;
+                    height: 400px;
+                    object-fit: cover;
+                    padding: 5px;
+                    border: 2px ridge #c7d9eb;
+                    border-radius: 10px;
+                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+                    min-width: 120px;
+                    }
+        .attr-table {
+                    width: 400px;
+                    display: flex;
+                    justify-content: space-between;
+                    margin-bottom: 5px;
+                    }
+        .attr-key {
+                    font-family: Batang;
+                    font-size: 18px;
+                    font-weight: bold;
+                    font-style: italic;
+                    width: 50%;
+                    color: #003f7f;
+                    }
+        .attr-value {
+                    font-family: Batang;
+                    font-size: 18px;
+                    font-weight: bold;
+                    font-style: italic;
+                    width: 90%;
+                    color: #003f7f;
+                    }
+        .title-div {
+                    font-family: Batang;
+                    font-size: 30px;
+                    font-style: italic;
+                    font-weight: bold;
+                    color: #003f7f;
+                    }
+        .desc-div {
+                    font-family: Batang;
+                    font-size: 25px;
+                    font-style: italic;
+                    font-weight: bold;
+                    color: #003f7f;
+                    }
+        .furnishing-div {
+                         font-family: Batang;
+                         font-size: 25px;
+                         font-style: italic;
+                         font-weight: bold;
+                         color: #003f7f;
+                        }
+        .additional-div {
+                         font-family: Batang;
+                         font-size: 25px;
+                         font-style: italic;
+                         font-weight: bold;
+                         color: #003f7f;
+                        }
+        .marg {
+                 margin-top: 20px;
+                 margin-bottom: 20px;
+                 }
+        .marg_head {
+                 margin-top: -20px;
+                 margin-bottom: 20px;
+                  }
+
+        .horizontal-div {
+            position: relative;
+            border: 2px ridge #c7d9eb;
+            overflow: hidden;
+            max-height: 120px;
+            max-width: 500px;
+        }
+
+        .photo-container {
+            display: flex;
+            gap: 10px;
+            padding: 5px;
+            overflow: hidden auto;
+            scroll-behavior: smooth;
+            white-space: nowrap;
+            align-items: stretch;
+            max-width: 500px;
+        }
+
+        .container-img {
+                    height: 120px;
+                    min-width: auto;
+                    object-fit: contain;
+                    cursor: pointer;
+                    transition: transform 0.3s ease-in-out;
+                   }
+        .container-img.fullscreen {
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        width: 100vw;
+                        height: 100vh;
+                        object-fit: contain;
+                        z-index: 1000;
+                        background: rgba(0, 0, 0, 0.8);
+                    }
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 30px;
+            height: 30px;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 25px;
+            color: #4d5052;
+            user-select: none;
+            line-height: 1;
+        }
+
+        .left-arrow {
+            left: 0px;
+        }
+
+        .right-arrow {
+            right: 0px;
+        }
+
+
+        .pound-symbol::before {
+            content: "\00A3";
+        }
+
+        .square-meter::after {
+            content: "m\00B2";
+        }
+
+        .whatsapp-button {
+                            transform: translate(-50%, -50%);
+                            background: #25D366; /*цвет кнопки*/
+                            border-radius: 50%;
+                            width: 55px; /*ширина кнопки*/
+                            height: 55px; /*высота кнопки*/
+                            color: #fff;
+                            text-align: center;
+                            line-height: 53px; /*центровка иконки в кнопке*/
+                            font-size: 50px; /*размер иконки*/
+                            z-index: 9999;
+                            margin-bottom: 20px;
+                        }
+        .whatsapp-button a {
+                                color: #fff;
+                            }
+        .whatsapp-button:before,
+        .whatsapp-button:after {
+            content: " ";
+            display: block;
+            position: absolute;
+            border: 50%;
+            border: 1px solid #25D366;
+            left: -20px;
+            right: -20px;
+            top: -20px;
+            bottom: -20px;
+            border-radius: 50%;
+            animation: animate 1.5s linear infinite;
+            opacity: 0;
+            backface-visibility: hidden;
+        }
+
+        .whatsapp-button:after{
+            animation-delay: .5s;
+        }
+        .button-div {
+                        position: fixed;
+                        right: 13px;
+                    }
+        .tg-button {
+                            transform: translate(-50%, -50%);
+                            background: #2596d3; /*цвет кнопки*/
+                            border-radius: 50%;
+                            width: 55px; /*ширина кнопки*/
+                            height: 55px; /*высота кнопки*/
+                            color: #fff;
+                            text-align: center;
+                            line-height: 53px; /*центровка иконки в кнопке*/
+                            font-size: 50px; /*размер иконки*/
+                            z-index: 9999;
+                            margin-top: 80px;
+                            margin-bottom: 50px;
+                        }
+        .tg-button a {
+                                color: #fff;
+                            }
+        .tg-button:before,
+        .tg-button:after {
+            content: " ";
+            display: block;
+            position: absolute;
+            border: 50%;
+            border: 1px solid #2596d3;
+            left: -20px;
+            right: -20px;
+            top: -20px;
+            bottom: -20px;
+            border-radius: 50%;
+            animation: animate 1.5s linear infinite;
+            opacity: 0;
+            backface-visibility: hidden;
+        }
+
+        .tg-button:after{
+            animation-delay: .5s;
+        }
+
+        @keyframes animate
+        {
+            0%
+            {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+            50%
+            {
+                opacity: 1;
+            }
+            100%
+            {
+                transform: scale(1.2);
+                opacity: 0;
+            }
+        }
+
+.header {
+    position: relative;
+}
+
+.background-image {
+    position: relative;
+    overflow: hidden;
+}
+
+.background-image img {
+    width: 100%;
+    height: auto;
+}
+select {
+  background: rgba(0, 0, 0, 0);
+  color: #003f7f;
+  border: none;
+  font-weight: bold;
+  text-shadow: 0 1px 0 rgba(220, 226, 230, 1);
+  border: none;
+}
+select option {
+  margin: 40px;
+  background: rgba(0, 0, 0, 0.3);
+  color: #003f7f;
+  font-weight: bold;
+  border-radius: 10px;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
+  border: none;
+}
+.select-overlay {
+        position: absolute;
+        top: 60%;
+        right: 20px; /* Расстояние от правого края */
+        transform: translateY(-50%);
+        padding: 8px;
+        font-size: 16px;
+        background: transparent;
+        border: none;
+    }
+#language-select::after {
+    content: '\25BC';
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    color: white;
+}
+
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="background-image">
+            <a><img src="https://i.ibb.co/Sv3Bvz2/background.png" alt="background" border="0" /></a>
+            <div class="select-overlay">
+                <select id="language-select">
+                    <option value="en" selected>EN🇬🇧</option>
+                    <option value="de">DE🇩🇪</option>
+                    <option value="ru">RU🇷🇺</option>
+                </select>
+            </div>
+        </div>
+    </header>
+    <div class="preview marg-head">
+        {% if images %}
+            <img class="main-img" src="data:image/jpeg;base64,{{ images[0] }}">
+        {% endif %}
+    </div>
+    <div class="title-div marg" id="title"></div>
+    {% if images %}
+        <div class="horizontal-div marg">
+            <div class="photo-container">
+                    {% for i in images %}
+                        <img class="container-img" src="data:image/jpeg;base64,{{ i }}">
+                    {% endfor %}
+            </div>
+            <div class="arrow left-arrow">&#10094;</div>
+            <div class="arrow right-arrow">&#10095;</div>
+        </div>
+    {% endif %}
+    {% for key in upd_data_df %}
+        {% if upd_data_df.get(key) %}
+            <div class="attr-table marg">
+                <div class="attr-key" id="{{ key }}"></div>
+                {% if key == 'price' %}
+                    <div class="attr-value pound-symbol">{{ upd_data_df.get(key) }}</div>
+                {% elif key in ('closedarea', 'totalarea') %}
+                    <div class="attr-value square-meter">{{ upd_data_df.get(key) }}</div>
+                {% else %}
+                    <div class="attr-value">{{ upd_data_df.get(key) }}</div>
+                {% endif %}
+            </div>
+        {% endif %}
+    {% endfor %}
+    <div class="desc-div marg" id="description"></div>
+    {% if plan %}
+        <div class="horizontal-div marg">
+            <div class="photo-container">
+                    {% for i in plan %}
+                        <img class="container-img" src="data:image/jpeg;base64,{{ i }}">
+                    {% endfor %}
+            </div>
+            <div class="arrow left-arrow">&#10094;</div>
+            <div class="arrow right-arrow">&#10095;</div>
+        </div>
+    {% endif %}
+    <div class="furnishing-div marg" id="furnishing"></div>
+    <div class="map-div marg"> {{ map_url }} </div>
+    <div class="additional-div marg" id="additional"></div>
+    <div class="button-div">
+    <a href='https://telegram.im/@{{ tg_username }}' target='_blank' title='' rel='noopener noreferrer'>
+        <div class='tg-button'><i class="fab fa-telegram-plane" aria-hidden='true'></i></div></a>
+    <a href='https://api.whatsapp.com/send?phone={{ phone }}' target='_blank' title='' rel='noopener noreferrer'>
+        <div class='whatsapp-button'><i class='fab fa-whatsapp' aria-hidden='true'></i></div></a>
+    </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const texts = {
+	    en: {{ data.get('en', {}) | safe }},
+	    de: {{ data.get('de', {}) | safe }},
+	    ru: {{ data.get('ru', {}) | safe }},
+	};
+
+    const languageSelect = document.querySelector('#language-select');
+    const titleElement = document.querySelector('#title');
+    const descriptionElement = document.querySelector('#description');
+    const furnishingElement = document.querySelector('#furnishing');
+    const additionalElement = document.querySelector('#additional');
+    const priceElement = document.querySelector('#price');
+    const objectnumberElement = document.querySelector('#objectnumber');
+    const objecttypeenElement = document.querySelector('#objecttypeen');
+    const objecttypedeElement = document.querySelector('#objecttypede');
+    const objecttyperuElement = document.querySelector('#objecttyperu');
+    const floorElement = document.querySelector('#floor');
+    const closedareaElement = document.querySelector('#closedarea');
+    const totalareaElement = document.querySelector('#totalarea');
+    const roomsElement = document.querySelector('#rooms');
+    const bedroomsElement = document.querySelector('#bedrooms');
+    const terraceElement = document.querySelector('#terrace');
+    const balconyElement = document.querySelector('#balcony');
+    const poolElement = document.querySelector('#pool');
+    const completionElement = document.querySelector('#completion');
+
+
+    function changeLanguage(language) {
+        const selectedTexts = texts[language];
+
+        titleElement.textContent = selectedTexts.title;
+        descriptionElement.textContent = selectedTexts.description;
+        furnishingElement.textContent = selectedTexts.furnishing;
+        additionalElement.textContent = selectedTexts.additional;
+        priceElement.textContent = selectedTexts.price;
+        objectnumberElement.textContent = selectedTexts.objectnumber;
+        objecttypeenElement.textContent = selectedTexts.objecttypeen;
+        objecttypedeElement.textContent = selectedTexts.objecttypede;
+        objecttyperuElement.textContent = selectedTexts.objecttyperu;
+        floorElement.textContent = selectedTexts.floor;
+        closedareaElement.textContent = selectedTexts.closedarea;
+        totalareaElement.textContent = selectedTexts.totalarea;
+        roomsElement.textContent = selectedTexts.rooms;
+        bedroomsElement.textContent = selectedTexts.bedrooms;
+        terraceElement.textContent = selectedTexts.terrace;
+        balconyElement.textContent = selectedTexts.balcony;
+        poolElement.textContent = selectedTexts.pool;
+        completionElement.textContent = selectedTexts.completion;
+        };
+
+    languageSelect.addEventListener('change', (event) => {
+        const selectedLanguage = event.target.value;
+        changeLanguage(selectedLanguage);
+            });
+    const selectedLanguage = languageSelect.value;
+    changeLanguage(selectedLanguage);
+});
+
+    const photoContainer = document.querySelector('.photo-container');
+    const leftArrow = document.querySelector('.left-arrow');
+    const rightArrow = document.querySelector('.right-arrow');
+
+    leftArrow.addEventListener('click', () => {
+        photoContainer.scrollBy({
+            left: -500, // Измените это значение по своему усмотрению
+            behavior: 'smooth'
+        });
+    });
+
+    rightArrow.addEventListener('click', () => {
+        photoContainer.scrollBy({
+            left: 500, // Измените это значение по своему усмотрению
+            behavior: 'smooth'
+        });
+    });
+
+    const containerImgs = document.querySelectorAll('.container-img');
+    const arrows = document.querySelectorAll(".arrow");
+
+    containerImgs.forEach(img => {
+        img.addEventListener('click', () => {
+            img.classList.toggle('fullscreen');
+        });
+
+
+    let currentImageIndex = 0;
+
+    function navigateImages(direction) {
+        if (direction === 'left') {
+            currentImageIndex = (currentImageIndex - 1 + containerImgs.length) % containerImgs.length;
+        } else if (direction === 'right') {
+            currentImageIndex = (currentImageIndex + 1) % containerImgs.length;
+        }
+        containerImgs.forEach((img, index) => {
+            img.classList.toggle('fullscreen', index === currentImageIndex);
+        });
+    }
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'ArrowLeft') {
+            navigateImages('left');
+        } else if (event.key === 'ArrowRight') {
+            navigateImages('right');
+        }
+    });
+
+    let touchStartX = 0;
+
+    photoContainer.addEventListener('touchstart', (event) => {
+    touchStartX = event.touches[0].clientX;
+    });
+
+    photoContainer.addEventListener('touchmove', (event) => {
+    event.preventDefault();
+    });
+
+    photoContainer.addEventListener('touchend', (event) => {
+    const touchEndX = event.changedTouches[0].clientX;
+    const touchThreshold = 50; // Порог для определения перелистывания
+    const touchDiff = touchEndX - touchStartX;
+
+    if (touchDiff > touchThreshold) {
+        navigateImages('left');
+    } else if (touchDiff < -touchThreshold) {
+        navigateImages('right');
+    }
+    });
+
+});
+</script>
+</body>
+</html>

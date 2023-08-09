@@ -53,23 +53,23 @@ css = """
                                             border-radius: 5px; /* Закругление углов полосы прокрутки */
         }
         .whatsapp-button {
-    position: fixed;
-    right: 13px;
-    bottom: 90px;
-    transform: translate(-50%, -50%);
-    background: #25D366; /*цвет кнопки*/
-    border-radius: 50%;
-    width: 55px; /*ширина кнопки*/
-    height: 55px; /*высота кнопки*/
-    color: #fff;
-    text-align: center;
-    line-height: 53px; /*центровка иконки в кнопке*/
-    font-size: 50px; /*размер иконки*/
-    z-index: 9999;
-}
+                            position: fixed;
+                            right: 13px;
+                            bottom: 90px;
+                            transform: translate(-50%, -50%);
+                            background: #25D366; /*цвет кнопки*/
+                            border-radius: 50%;
+                            width: 55px; /*ширина кнопки*/
+                            height: 55px; /*высота кнопки*/
+                            color: #fff;
+                            text-align: center;
+                            line-height: 53px; /*центровка иконки в кнопке*/
+                            font-size: 50px; /*размер иконки*/
+                            z-index: 9999;
+                        }
 .whatsapp-button a {
-    color: #fff;
-}
+                        color: #fff;
+                    }
 .whatsapp-button:before,
 .whatsapp-button:after {
     content: " ";
@@ -108,5 +108,30 @@ css = """
         opacity: 0;
     }
 }
-    </style>
+    .css-189oqrx {
+    width: 20px;
+    position: relative;
+    display: flex;
+    flex: 1 1 0%;
+    flex-direction: column;
+    gap: 1rem;
+}   
+    .css-1w58vtp {
+    width: 140px;
+    position: grid;
+}
+.attr-table {
+  width: 400px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline; /* Чтобы ключи и значения выровнялись по базовой линии текста */
+  margin-bottom: 5px; /* Пространство между парами ключ-значение */
+}
+
+
+.attr-value {
+    display: flex;
+  text-align: left;
+}
+}
 """
