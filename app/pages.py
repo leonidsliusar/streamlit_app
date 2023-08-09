@@ -5,7 +5,7 @@ import streamlit as st
 from utils import load_lottiefile, dict_to_df, read_from_json, remove_repo, df_to_dict
 from streamlit_lottie import st_lottie
 from key_val_map import values, keys, en_attr_key, de_attr_key, ru_attr_key, keys_en
-from utils import hint_desc, upload_photo
+from utils import upload_photo
 
 
 lang_map = {
@@ -20,8 +20,6 @@ def side_bars():
     path = os.path.dirname(__file__)
     path_to_json = path + '/map.json'
     hint_lottie = load_lottiefile('hint.json')
-    with st.sidebar.expander('Подсказка для поля "описание":\n\nтеги для форматирования текста'):
-        st.markdown(hint_desc)
     link_mapping_data = read_from_json(path_to_json)
     with st.sidebar.expander('Соответствие существующих заголовков и ссылок'):
         df = dict_to_df(link_mapping_data)
