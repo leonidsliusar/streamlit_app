@@ -63,3 +63,9 @@ de_attr_key = {'price': 'preis', 'objectnumber': 'objektnummer', 'objecttypede':
 ru_attr_key = {'price': 'цена', 'objectnumber': 'номер объекта', 'objecttyperu': 'тип объекта', 'floor': 'этаж',
                'closedarea': 'площадь', 'totalarea': 'общая площадь', 'rooms': 'команты', 'bedrooms': 'спальни',
                'terrace': 'терасса', 'balcony': 'балкон', 'pool': 'бассейн', 'completion': 'срок сдачи'}
+
+obj_type_back_mapping = {
+    'object type en': 'object type',
+    'object type de': 'objekttyp',
+    'object type ru': 'тип объекта'
+}

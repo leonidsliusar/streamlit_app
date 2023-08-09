@@ -346,22 +346,65 @@
             <img class="main-img" src="data:image/jpeg;base64,{{ images[0] }}">
         {% endif %}
         <div class="table">
-        {% for key in upd_data_df %}
-            {% if upd_data_df.get(key) %}
-                <div class="attr-table marg">
-                    <div class="attr-key" id="{{ key }}"></div>
-                    {% if key == 'price' %}
-                        <div class="attr-value pound-symbol">{{ upd_data_df.get(key) }}</div>
-                    {% elif key.startswith('objecttype') %}
-                        <div class="attr-value">{{ upd_data_df.get(key) }}</div>
-                    {% elif key in ('closedarea', 'totalarea') %}
-                        <div class="attr-value square-meter">{{ upd_data_df.get(key) }}</div>
-                    {% else %}
-                        <div class="attr-value">{{ upd_data_df.get(key) }}</div>
-                    {% endif %}
-                </div>
-            {% endif %}
-        {% endfor %}
+            <div class="attr-table marg">
+                <div class="attr-key" id="price"></div>
+                <div class="attr-value pound-symbol">{{ upd_data_df.get('price') }}</div>
+            </div>
+
+            <div class="attr-table marg">
+                <div class="attr-key" id="objectnumber"></div>
+                <div class="attr-value">{{ upd_data_df.get('objectnumber') }}</div>
+            </div>
+
+            <div class="attr-table marg">
+                <div class="attr-key" id="objecttype"></div>
+                <div class="attr-value" id="objecttype-val"></div>
+            </div>
+
+            <div class="attr-table marg">
+                <div class="attr-key" id="floor"></div>
+                <div class="attr-value">{{ upd_data_df.get('floor') }}</div>
+            </div>
+
+            <div class="attr-table marg">
+                <div class="attr-key" id="closedarea"></div>
+                <div class="attr-value square-meter">{{ upd_data_df.get('closedarea') }}</div>
+            </div>
+
+            <div class="attr-table marg">
+                <div class="attr-key" id="totalarea"></div>
+                <div class="attr-value square-meter">{{ upd_data_df.get('totalarea') }}</div>
+            </div>
+
+            <div class="attr-table marg">
+                <div class="attr-key" id="rooms"></div>
+                <div class="attr-value">{{ upd_data_df.get('rooms') }}</div>
+            </div>
+
+            <div class="attr-table marg">
+                <div class="attr-key" id="bedrooms"></div>
+                <div class="attr-value">{{ upd_data_df.get('bedrooms') }}</div>
+            </div>
+
+            <div class="attr-table marg">
+                <div class="attr-key" id="terrace"></div>
+                <div class="attr-value">{{ upd_data_df.get('terrace') }}</div>
+            </div>
+
+            <div class="attr-table marg">
+                <div class="attr-key" id="balcony"></div>
+                <div class="attr-value">{{ upd_data_df.get('balcony') }}</div>
+            </div>
+
+            <div class="attr-table marg">
+                <div class="attr-key" id="pool"></div>
+                <div class="attr-value">{{ upd_data_df.get('pool') }}</div>
+            </div>
+
+            <div class="attr-table marg">
+                <div class="attr-key" id="completion"></div>
+                <div class="attr-value">{{ upd_data_df.get('completion') }}</div>
+            </div>
         </div>
     </div>
     <div class="title-div marg" id="title"></div>
@@ -415,9 +458,8 @@
     const additionalElement = document.querySelector('#additional');
     const priceElement = document.querySelector('#price');
     const objectnumberElement = document.querySelector('#objectnumber');
-    const objecttypeenElement = document.querySelector('#objecttypeen');
-    const objecttypedeElement = document.querySelector('#objecttypede');
-    const objecttyperuElement = document.querySelector('#objecttyperu');
+    const objecttypeElement = document.querySelector('#objecttype');
+    const objecttypevalElement = document.querySelector('#objecttype-val');
     const floorElement = document.querySelector('#floor');
     const closedareaElement = document.querySelector('#closedarea');
     const totalareaElement = document.querySelector('#totalarea');
@@ -438,9 +480,8 @@
         additionalElement.textContent = selectedTexts.additional;
         priceElement.textContent = selectedTexts.price;
         objectnumberElement.textContent = selectedTexts.objectnumber;
-        objecttypeenElement.textContent = selectedTexts.objecttypeen;
-        objecttypedeElement.textContent = selectedTexts.objecttypede;
-        objecttyperuElement.textContent = selectedTexts.objecttyperu;
+        objecttypeElement.textContent = selectedTexts.objecttype;
+        objecttypevalElement.textContent = selectedTexts.objecttypeval;
         floorElement.textContent = selectedTexts.floor;
         closedareaElement.textContent = selectedTexts.closedarea;
         totalareaElement.textContent = selectedTexts.totalarea;

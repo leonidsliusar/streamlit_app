@@ -4,9 +4,8 @@ import pandas as pd
 import streamlit as st
 from utils import load_lottiefile, dict_to_df, read_from_json, remove_repo, df_to_dict
 from streamlit_lottie import st_lottie
-from key_val_map import values, keys, en_attr_key, de_attr_key, ru_attr_key, keys_en
+from key_val_map import values, keys, en_attr_key, de_attr_key, ru_attr_key, keys_en, obj_type_back_mapping
 from utils import upload_photo
-
 
 lang_map = {
     'английский': 'en',
@@ -94,6 +93,16 @@ def load_data(lang: str) -> Optional[dict]:
             st.session_state.data.get('de').update(de_attr_key)
         if st.session_state.data.get('ru'):
             st.session_state.data.get('ru').update(ru_attr_key)
+        key_val_obj_type_map = {}
+        for ln in ('en', 'de', 'ru'):
+            key_val_obj_type_map.update({ln: upd_data_df.loc[upd_data_df['key'] == f'object type {ln}']})
+        for ln_key in key_val_obj_type_map:
+            ln_val = key_val_obj_type_map.get(ln_key)
+            if not ln_val.empty:
+                obj_type = obj_type_back_mapping.get(ln_val['key'].values[0])
+                obj_type_value = ln_val['value'].values[0]
+                st.session_state.data.get(f'{ln_key}').update(
+                    {'objecttype': f'{obj_type}', 'objecttypeval': obj_type_value})
         data = {
             'data': st.session_state.data,
             'upd_data_df': dict(zip(keys_en, upd_data_df['value'])),
