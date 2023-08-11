@@ -1,6 +1,7 @@
 import base64
 import io
 import json
+import os
 from typing import Optional
 from urllib.parse import urlparse
 
@@ -93,7 +94,9 @@ def upload_photo(photo) -> Optional[list]:
 
 def render_index(data: dict):
     env = Environment(loader=FileSystemLoader('.'))
-    template = env.get_template('index.html')
+    path = os.path.dirname(__file__)
+    path_to_template = path + '/index.html'
+    template = env.get_template(path_to_template)
     rendered_html = template.render(data)
     return rendered_html
 
