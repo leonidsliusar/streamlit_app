@@ -18,7 +18,7 @@ lang_map = {
 def side_bars():
     path = os.path.dirname(__file__)
     path_to_json = path + '/map.json'
-    hint_lottie = load_lottiefile('hint.json')
+    hint_lottie = load_lottiefile(path_to_json + '/hint.json')
     link_mapping_data = read_from_json(path_to_json)
     with st.sidebar.expander('Соответствие существующих заголовков и ссылок'):
         df = dict_to_df(link_mapping_data)
