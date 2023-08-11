@@ -24,10 +24,11 @@ st.set_page_config(
 )
 side_bars()
 
-animations_folder = os.path.abspath("animations")
+path = os.path.dirname(__file__)
+animations_folder = path + '/animations'
 animation_files = os.listdir(animations_folder)
 random_animation_file = random.choice(animation_files)
-lottie_streamlit = load_lottiefile(f"animations/{random_animation_file}")
+lottie_streamlit = load_lottiefile(f"{animations_folder}/{random_animation_file}")
 
 col1, col2 = st.columns(2)
 
