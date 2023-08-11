@@ -94,7 +94,7 @@ def upload_photo(photo) -> Optional[list]:
 
 def render_index(data: dict):
     path = os.path.dirname(__file__)
-    env = Environment(loader=FileSystemLoader(path))
+    env = Environment(loader=FileSystemLoader('.'))
     path_to_template = path + '/index.html'
     template = env.get_template(path_to_template)
     rendered_html = template.render(data)
