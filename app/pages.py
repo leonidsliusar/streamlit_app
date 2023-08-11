@@ -67,21 +67,14 @@ def load_data(lang: str) -> Optional[dict]:
             hide_index=True,
         )
     description = st.text_area(f'Описание {lang_key}', height=300, max_chars=None,
-                               value=default_data.get('description', ''))
-    plan = st.file_uploader('Планировка', accept_multiple_files=True)
-    if plan:
-        with st.sidebar.expander(label='Порядок фото планировки', expanded=False):
-            img_plan = upload_photo(plan)
-    furnishing = st.text_input(f'Мебелирование {lang_key}', value=default_data.get('furnishing', ''))
+                               value=default_data.get('description', ''),
+                               help='Для перехода на новую строку нажать Enter+shift')
     map_url = st.text_input("Введите ссылку на карту Google Maps:", help='Подсказка в сайд-баре слева')
-    additional = st.text_input(f'Особенности {lang_key}', value=default_data.get('additional', ''))
     st.session_state.data.update(
         {
             lang_key: {
                 'title': title,
                 'description': description,
-                'furnishing': furnishing,
-                'additional': additional,
             }
         }
     )
@@ -101,12 +94,11 @@ def load_data(lang: str) -> Optional[dict]:
             if not ln_val.empty:
                 obj_type = obj_type_back_mapping.get(ln_val['key'].values[0])
                 obj_type_value = ln_val['value'].values[0]
-                st.session_state.data.get(f'{ln_key}').update(
+                st.session_state.data.get(f'{ln_key}', {}).update(
                     {'objecttype': f'{obj_type}', 'objecttypeval': obj_type_value})
         data = {
             'data': st.session_state.data,
             'upd_data_df': dict(zip(keys_en, upd_data_df['value'])),
-            'plan': img_plan,
             'map_url': map_url,
             'images': img
         }

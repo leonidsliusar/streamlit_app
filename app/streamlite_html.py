@@ -55,5 +55,5 @@ with col2:
         rendered_html = render_index(data)
         html(rendered_html, height=2500)
         st.session_state.page = rendered_html
-        # with open('template.html', 'w') as file:
-        #     file.write(rendered_html)
+        with open('template.html', 'w') as file:
+            file.write(rendered_html)
