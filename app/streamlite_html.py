@@ -24,7 +24,8 @@ st.set_page_config(
 )
 side_bars()
 
-animation_files = os.listdir("./animations")
+animations_folder = os.path.abspath("animations")
+animation_files = os.listdir(animations_folder)
 random_animation_file = random.choice(animation_files)
 lottie_streamlit = load_lottiefile(f"animations/{random_animation_file}")
 
@@ -55,5 +56,5 @@ with col2:
         rendered_html = render_index(data)
         html(rendered_html, height=2500)
         st.session_state.page = rendered_html
-        with open('template.html', 'w') as file:
-            file.write(rendered_html)
+        # with open('template.html', 'w') as file:
+        #     file.write(rendered_html)
