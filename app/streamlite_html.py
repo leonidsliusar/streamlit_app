@@ -25,6 +25,7 @@ st.set_page_config(
 side_bars()
 
 path = os.path.dirname(__file__)
+path_to_json = path + '/map.json'
 animations_folder = path + '/animations'
 animation_files = os.listdir(animations_folder)
 random_animation_file = random.choice(animation_files)
@@ -44,7 +45,7 @@ with col1:
                 obj_num = data.get('upd_data_df').get('objectnumber')
                 try:
                     link = run_pages(rendered_html=st.session_state.page, obj_num=obj_num)
-                    write_in_json(obj_num=obj_num, link=link, json_path='map.json')
+                    write_in_json(obj_num=obj_num, link=link, json_path=path_to_json)
                     st.experimental_rerun()
                     st.toast('Ссылка в сайд-баре слева', icon='🟢')
                 except GithubException:
