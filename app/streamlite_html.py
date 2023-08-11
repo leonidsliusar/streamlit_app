@@ -24,7 +24,7 @@ st.set_page_config(
 )
 side_bars()
 
-animation_files = os.listdir("animations/")
+animation_files = os.listdir("/animations")
 random_animation_file = random.choice(animation_files)
 lottie_streamlit = load_lottiefile(f"animations/{random_animation_file}")
 
